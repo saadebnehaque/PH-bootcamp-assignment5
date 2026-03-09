@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@import "daisyui";
+
+@theme {
+    --font-sans: "Geist", sans-serif;
+    --color-priamry-color: #4A00FF;
+    --color-main-bg: #F8FAFC;
+    --color-Style: #1F2937;
+    --color-paragraph: #64748B;
+    --color-stroke: #E4E4E7;
+    --color-open: #00A96E;
+    --color-close: #EF4444;
+    --shadow-default: 0 5px 10px 0 #00000014;
+}

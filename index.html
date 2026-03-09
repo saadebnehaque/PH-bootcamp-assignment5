@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
     <!-- daisy UI cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <!-- tailwind css cdn -->
@@ -16,13 +17,64 @@
 
     <style type="text/tailwindcss">
         @theme{
-    --font-sans: "Geist", sans-serif;
-}
+                --color-priamry-color: #4A00FF;
+                --color-main-bg: #F8FAFC;
+                --color-Style: #1F2937;
+                --color-paragraph: #64748B;
+                 --color-stroke: #E4E4E7;
+                --shadow-default: 0 5px 10px 0 #00000014;
+        }
     </style>
 </head>
 
-<body>
-    <h1 class="font-bold text-3xl text-emerald-700">Github Issue Tracker</h1>
+<body class="h-screen w-screen bg-main-bg flex items-center justify-center">
+    <section class="w-[520px] rounded-lg p-8 bg-white shadow-default  space-y-6 items-center">
+        <div class="text-center space-y-6">
+            <div class="flex justify-center">
+                <img src="./assets/github-logo.png" alt="Github logo">
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-2xl font-semibold text-Style">GitHub Issues Tracker</h2>
+                <p class="text-paragraph">Sign in to manage your issues</p>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div class="space-y-2">
+                <label class="block font-medium text-Style" for="username">Username</label>
+                <div class="space-y-1.5">
+                    <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
+                        id="username" placeholder="Enter Username">
+                    <p class="text-sm text-priamry-color">Default: admin</p>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <label class="block font-medium text-Style" for="password">Password</label>
+                <div class="space-y-1.5">
+                    <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
+                        id="password" placeholder="Enter Password">
+                    <p class="text-sm text-priamry-color">Default: admin123</p>
+                </div>
+            </div>
+
+        </div>
+        <div>
+            <button class="w-full btn bg-priamry-color text-white ">Sign In</button>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="grow border-t border-stroke"></div>
+            <span>OR</span>
+            <div class="grow border-t border-stroke"></div>
+        </div>
+        <div class="text-center space-y-2">
+            <p class="text-sm text-paragraph">Demo Credentials:</p>
+            <div>
+                <p class="text-Style font-semibold">Username: <span class="font-normal">admin</span>
+                    <br>
+                    Password: <span class="font-normal">admin123</span>
+                </p>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
