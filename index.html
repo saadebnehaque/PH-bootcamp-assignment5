@@ -4,31 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login | Github Issue Tracker</title>
     <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
-    <!-- daisy UI cdn -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <!-- tailwind css cdn -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <style type="text/tailwindcss">
-        @theme{
-                --color-priamry-color: #4A00FF;
-                --color-main-bg: #F8FAFC;
-                --color-Style: #1F2937;
-                --color-paragraph: #64748B;
-                 --color-stroke: #E4E4E7;
-                --shadow-default: 0 5px 10px 0 #00000014;
+        @theme {
+            --color-priamry-color: #4A00FF;
+            --color-main-bg: #F8FAFC;
+            --color-Style: #1F2937;
+            --color-paragraph: #64748B;
+            --color-stroke: #E4E4E7;
+            --shadow-default: 0 5px 10px 0 #00000014;
+            --font-sans: "Geist", sans-serif;
         }
     </style>
 </head>
 
-<body class="h-screen w-screen bg-main-bg flex items-center justify-center">
-    <section class="w-[520px] rounded-lg p-8 bg-white shadow-default  space-y-6 items-center">
+<body class="min-h-screen w-full bg-main-bg flex items-center justify-center p-4">
+    <section class="w-full max-w-[520px] rounded-lg p-6 md:p-8 bg-white shadow-default space-y-6">
         <div class="text-center space-y-6">
             <div class="flex justify-center">
                 <img src="./assets/github-logo.png" alt="Github logo">
@@ -38,31 +36,32 @@
                 <p class="text-paragraph">Sign in to manage your issues</p>
             </div>
         </div>
-        <div class="space-y-4">
-            <div class="space-y-2">
-                <label class="block font-medium text-Style" for="username">Username</label>
-                <div class="space-y-1.5">
-                    <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
-                        id="username" placeholder="Enter Username">
-                    <p class="text-sm text-priamry-color">Default: admin</p>
+        <form class="space-y-6">
+            <div class="space-y-4">
+                <div class="space-y-2">
+                    <label class="block font-medium text-Style" for="username">Username</label>
+                    <div class="space-y-1.5">
+                        <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
+                            id="username" placeholder="Enter Username">
+                        <p class="text-sm text-priamry-color">Default: admin</p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <label class="block font-medium text-Style" for="password">Password</label>
+                    <div class="space-y-1.5">
+                        <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="password"
+                            id="password" placeholder="Enter Password">
+                        <p class="text-sm text-priamry-color">Default: admin123</p>
+                    </div>
                 </div>
             </div>
-            <div class="space-y-2">
-                <label class="block font-medium text-Style" for="password">Password</label>
-                <div class="space-y-1.5">
-                    <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
-                        id="password" placeholder="Enter Password">
-                    <p class="text-sm text-priamry-color">Default: admin123</p>
-                </div>
+            <div>
+                <button type="submit" class="w-full btn bg-priamry-color text-white border-none hover:opacity-90">Sign In</button>
             </div>
-
-        </div>
-        <div>
-            <button class="w-full btn bg-priamry-color text-white ">Sign In</button>
-        </div>
+        </form>
         <div class="flex items-center gap-2">
             <div class="grow border-t border-stroke"></div>
-            <span>OR</span>
+            <span class="text-paragraph text-sm">OR</span>
             <div class="grow border-t border-stroke"></div>
         </div>
         <div class="text-center space-y-2">
