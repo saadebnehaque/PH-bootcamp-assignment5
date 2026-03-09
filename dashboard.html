@@ -4,126 +4,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dashboard | Github Issue Tracker</title>
-    <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
-    <!-- daisy UI cdn -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <!-- tailwind css cdn -->
+
+    <link rel="shortcut icon" href="./assets/github-logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Google Font -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <style type="text/tailwindcss">
         @theme {
-    --font-sans: "Geist", sans-serif;
-    --color-priamry-color: #4A00FF;
-    --color-main-bg: #F8FAFC;
-    --color-Style: #1F2937;
-    --color-paragraph: #64748B;
-    --color-stroke: #E4E4E7;
-    --color-open: #00A96E;
-    --color-close: #A855F7;
-    --shadow-default: 0 5px 10px 0 #00000014;
+--font-sans: "Geist", sans-serif;
+--color-priamry-color: #4A00FF;
+--color-main-bg: #F8FAFC;
+--color-Style: #1F2937;
+--color-paragraph: #64748B;
+--color-stroke: #E4E4E7;
+--color-open: #00A96E;
+--color-close: #A855F7;
+--shadow-default: 0 5px 10px 0 #00000014;
 }
-
-    </style>
+</style>
 </head>
 
-<body class="bg-main-bg h-screen ">
+<body class="bg-main-bg h-screen">
+
     <header>
+
         <nav
             class="fixed top-0 w-full z-10 bg-white flex flex-col md:flex-row justify-between items-center border-b border-stroke py-4 px-6 md:px-20 gap-4">
-            <div
-                class="flex items-center gap-1 font-semibold text-xl md:text-2xl text-Style cursor-pointer active:scale-99">
-                <div class="w-8 md:w-9"><img src="./assets/github-logo.png" alt="Logo"></div>
+
+            <div class="flex items-center gap-1 font-semibold text-xl md:text-2xl text-Style">
+                <div class="w-8 md:w-9">
+                    <img src="./assets/github-logo.png">
+                </div>
                 <h1>GitHub Issues Tracker</h1>
             </div>
 
             <div class="flex items-center gap-2 flex-col sm:flex-row w-full md:w-auto">
-                <input type="text" id="searchBar" placeholder="Search issues..."
+
+                <input id="searchBar" type="text" placeholder="Search issues..."
                     class="bg-[url('./assets/MagnifyingGlass.png')] bg-no-repeat bg-position-[12px_center] bg-size-[18px_18px] input pl-10 border-stroke placeholder:text-paragraph w-full md:w-64">
 
-                <button
-                    class="btn w-full sm:w-fit bg-priamry-color text-white font-semibold flex items-center gap-1 px-3 md:px-4">
-                    <img src="./assets/Plus.png" alt="" class="w-4 h-4">
-                    <p class="text-sm md:text-base">New Issue</p>
+                <button class="btn bg-priamry-color text-white border-none flex items-center gap-1">
+                    <img src="./assets/Plus.png" class="w-4 h-4">
+                    <p>New Issue</p>
                 </button>
+
             </div>
+
         </nav>
+
     </header>
 
-
     <main class="pt-50 sm:pt-35 w-[80%] mx-auto">
+
         <section id="tabs" class="flex flex-col sm:flex-row gap-2 p-6 mb-4 bg-white shadow-default rounded-lg">
-            <button class="tabBtn activeTab btn sm:w-30 box-border font-semibold bg-priamry-color text-white">All</button>
-            <button class="tabBtn btn sm:w-30 box-border font-semibold text-paragraph border-stroke">Open</button>
-            <button class="tabBtn btn sm:w-30 box-border font-semibold text-paragraph border-stroke">Closed</button>
+
+            <button class="tabBtn activeTab btn bg-priamry-color text-white">All</button>
+            <button class="tabBtn btn text-paragraph border-stroke">Open</button>
+            <button class="tabBtn btn text-paragraph border-stroke">Closed</button>
+
         </section>
+
         <section class="bg-white shadow-default">
 
             <div class="flex items-center justify-between rounded-t-lg p-6 border-b border-stroke flex-col md:flex-row">
+
                 <div class="flex gap-2 items-center flex-col md:flex-row text-center md:text-left">
+
                     <div class="p-[9px] bg-[#ECE4FF] rounded-full">
-                        <img src="./assets/Aperture.png" alt="">
+                        <img src="./assets/Aperture.png">
                     </div>
+
                     <div class="space-y-[3px]">
-                        <h3 class="font-semibold text-Style text-xl">50 Issues</h3>
+                        <h3 id="issueCount" class="font-semibold text-Style text-xl">0 Issues</h3>
                         <p class="text-paragraph">Track and manage your project issues</p>
                     </div>
+
                 </div>
+
                 <div class="font-medium text-Style flex gap-4 items-center">
+
                     <div class="flex gap-2 items-center">
                         <div class="h-3 w-3 bg-open rounded-full"></div>
                         <p>Open</p>
                     </div>
+
                     <div class="flex gap-2 items-center">
                         <div class="h-3 w-3 bg-close rounded-full"></div>
                         <p>Closed</p>
                     </div>
-                </div>
-            </div>
-            <div id="loader" class="flex hidden items-center justify-center my-6 h-20">
-                <span class="loading loading-infinity loading-xl text-priamry-color w-15"></span>
-            </div>
-            <div id="cardContainer" class="bg-[#FBFBFB] p-6 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-                
-               <div class="card shadow-default rounded bg-close pt-0.75">
-                    <div class="cardContent bg-white rounded">
-                        <div class="cardTop space-y-3 p-4">
-                            <div class="flex justify-between items-center">
-                                <img src="./assets/Closed- Status .png" alt="">
-                                <img src="./assets/high.png" alt="">
-                            </div>
-                            <div class="space-y-3">
-                                <div class="space-y-2">
-                                    <h2 class="text-sm text-Style font-semibold">Fix navigation menu on mobile devices
-                                    </h2>
-                                    <p class="text-xs text-paragraph">The navigation menu doesn't collapse properly on
-                                        mobile devices. Need to fix the
-                                        responsive behavior.</p>
-                                </div>
-                                <div class="labels flex items-center gap-1 flex-wrap">
-                                    <img src="./assets/bug.png" alt="">
-                                    <img src="./assets/help wanted.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cardBottom text-xs text-paragraph border-t border-stroke p-4 space-y-4">
-                            <p>#1 by john_doe</p>
-                            <p>1/15/2024</p>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
+
+            <div id="loader" class="flex hidden items-center justify-center my-6 h-20">
+                <span class="loading loading-infinity loading-xl text-priamry-color"></span>
+            </div>
+
+            <div id="cardContainer" class="bg-[#FBFBFB] p-6 grid gap-3 md:grid-cols-2 lg:grid-cols-4"></div>
+
         </section>
+
     </main>
 
+    <!-- MODAL -->
 
+    <dialog id="issueModal" class="modal">
+
+        <div class="modal-box max-w-2xl p-0">
+
+            <div id="modalContent" class="p-6 space-y-4"></div>
+
+            <div class="modal-action p-6 pt-0">
+                <form method="dialog">
+                    <button class="btn bg-priamry-color text-white border-none">Close</button>
+                </form>
+            </div>
+
+        </div>
+
+    </dialog>
 
     <script src="./script.js"></script>
+
 </body>
 
 </html>
