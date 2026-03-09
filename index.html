@@ -36,14 +36,14 @@
                 <p class="text-paragraph">Sign in to manage your issues</p>
             </div>
         </div>
-        <form class="space-y-6">
+        <form id="loginForm" class="space-y-6">
             <div class="space-y-4">
                 <div class="space-y-2">
                     <label class="block font-medium text-Style" for="username">Username</label>
                     <div class="space-y-1.5">
                         <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="text"
                             id="username" placeholder="Enter Username">
-                        <p class="text-sm text-priamry-color">Default: admin</p>
+                        <p id="userHint" class="text-sm text-priamry-color invisible">Default: admin</p>
                     </div>
                 </div>
                 <div class="space-y-2">
@@ -51,7 +51,7 @@
                     <div class="space-y-1.5">
                         <input class="input border border-stroke w-full placeholder:text-paragraph p-4" type="password"
                             id="password" placeholder="Enter Password">
-                        <p class="text-sm text-priamry-color">Default: admin123</p>
+                        <p id="passHint" class="text-sm text-priamry-color invisible">Default: admin123</p>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,9 @@
             </div>
         </div>
     </section>
+
+
+    <script src="./auth.js"></script>
 </body>
 
 </html>
