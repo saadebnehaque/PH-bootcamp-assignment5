@@ -45,7 +45,8 @@
                 <input type="text" id="searchBar" placeholder="Search issues..."
                     class="bg-[url('./assets/MagnifyingGlass.png')] bg-no-repeat bg-position-[12px_center] bg-size-[18px_18px] input pl-10 border-stroke placeholder:text-paragraph w-full md:w-64">
 
-                <button class="btn w-full sm:w-fit bg-priamry-color text-white font-semibold flex items-center gap-1 px-3 md:px-4">
+                <button
+                    class="btn w-full sm:w-fit bg-priamry-color text-white font-semibold flex items-center gap-1 px-3 md:px-4">
                     <img src="./assets/Plus.png" alt="" class="w-4 h-4">
                     <p class="text-sm md:text-base">New Issue</p>
                 </button>
@@ -55,10 +56,10 @@
 
 
     <main class="pt-50 sm:pt-35 w-[80%] mx-auto">
-        <section id="tabs" class="flex gap-2 p-6 mb-4 bg-white shadow-default rounded-lg">
-            <button class="btn w-30 box-border font-semibold bg-priamry-color text-white">All</button>
-            <button class="btn w-30 box-border font-semibold text-paragraph border-stroke">Open</button>
-            <button class="btn w-30 box-border font-semibold text-paragraph border-stroke">Closed</button>
+        <section id="tabs" class="flex flex-col sm:flex-row gap-2 p-6 mb-4 bg-white shadow-default rounded-lg">
+            <button class="tabBtn activeTab btn sm:w-30 box-border font-semibold bg-priamry-color text-white">All</button>
+            <button class="tabBtn btn sm:w-30 box-border font-semibold text-paragraph border-stroke">Open</button>
+            <button class="tabBtn btn sm:w-30 box-border font-semibold text-paragraph border-stroke">Closed</button>
         </section>
         <section class="bg-white shadow-default">
 
@@ -145,6 +146,8 @@
     </main>
 
 
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
