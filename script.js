@@ -12,44 +12,44 @@ let allIssues = []
 
 const loadIssues = () => {
 
-cardContainer.innerHTML=''
-loader.classList.remove('hidden')
+    cardContainer.innerHTML = ''
+    loader.classList.remove('hidden')
 
-fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
+    fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
 
-.then(res=>res.json())
+        .then(res => res.json())
 
-.then(result=>{
+        .then(result => {
 
-allIssues=result.data
+            allIssues = result.data
 
-issueCount.innerText=`${allIssues.length} Issues`
+            issueCount.innerText = `${allIssues.length} Issues`
 
-renderCards(allIssues)
+            renderCards(allIssues)
 
-})
+        })
 
-.finally(()=>{
+        .finally(() => {
 
-loader.classList.add('hidden')
+            loader.classList.add('hidden')
 
-})
+        })
 
 }
 
-function renderCards(cards){
+function renderCards(cards) {
 
-cardContainer.innerHTML=''
+    cardContainer.innerHTML = ''
 
 
-issueCount.innerText = cards.length + " Issues"
+    issueCount.innerText = cards.length + " Issues"
 
-cards.forEach(card=>{
+    cards.forEach(card => {
 
-cardContainer.innerHTML+=`
+        cardContainer.innerHTML += `
 
 <div onclick="openModal(${card.id})" 
-class="card shadow-default rounded border-t-4 ${card.status==='open'?'border-open':'border-close'} cursor-pointer">
+class="card shadow-default rounded border-t-4 ${card.status === 'open' ? 'border-open' : 'border-close'} cursor-pointer">
 
 <div class="cardContent bg-white rounded">
 
@@ -57,7 +57,7 @@ class="card shadow-default rounded border-t-4 ${card.status==='open'?'border-ope
 
 <div class="flex justify-between">
 
-<img src="${card.status==='open'?'./assets/Open-Status.png':'./assets/Closed- Status .png'}">
+<img src="${card.status === 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}">
 
 <img src="./assets/${card.priority}.png">
 
@@ -77,7 +77,7 @@ ${card.description}
 
 <div class="flex gap-1 flex-wrap">
 
-${card.labels.map(label=>`
+${card.labels.map(label => `
 <img src="./assets/${label}.png">
 `).join('')}
 
@@ -99,21 +99,21 @@ ${card.labels.map(label=>`
 
 `
 
-})
+    })
 
 }
 
-function openModal(id){
+function openModal(id) {
 
-fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
 
-.then(res=>res.json())
+        .then(res => res.json())
 
-.then(data=>{
+        .then(data => {
 
-const issue=data.data
+            const issue = data.data
 
-modalContent.innerHTML=`
+            modalContent.innerHTML = `
 
 <h2 class="text-xl font-semibold text-Style">
 ${issue.title}
@@ -121,8 +121,8 @@ ${issue.title}
 
 <div class="flex items-center gap-3 text-sm">
 
-<span class="${issue.status==='open'?'bg-open':'bg-close'} text-white px-3 py-1 rounded-full">
-${issue.status==='open'?'Opened':'Closed'}
+<span class="${issue.status === 'open' ? 'bg-open' : 'bg-close'} text-white px-3 py-1 rounded-full">
+${issue.status === 'open' ? 'Opened' : 'Closed'}
 </span>
 
 <p class="text-paragraph">
@@ -133,7 +133,7 @@ Opened by ${issue.author} • ${new Date(issue.createdAt).toLocaleDateString()}
 
 <div class="flex gap-2">
 
-${issue.labels.map(label=>`
+${issue.labels.map(label => `
 <img src="./assets/${label}.png">
 `).join('')}
 
@@ -163,57 +163,57 @@ ${issue.priority}
 
 `
 
-issueModal.showModal()
+            issueModal.showModal()
 
-})
+        })
 
 }
 
-tabs.forEach(tab=>{
+tabs.forEach(tab => {
 
-tab.addEventListener('click',()=>{
+    tab.addEventListener('click', () => {
 
-tabs.forEach(t=>{
-t.classList.remove('bg-priamry-color','text-white')
-t.classList.add('text-paragraph')
+        tabs.forEach(t => {
+            t.classList.remove('bg-priamry-color', 'text-white')
+            t.classList.add('text-paragraph')
+        })
+
+        tab.classList.add('bg-priamry-color', 'text-white')
+
+        const type = tab.innerText.toLowerCase()
+
+        if (type === 'all') {
+            renderCards(allIssues)
+        }
+
+        if (type === 'open') {
+            renderCards(allIssues.filter(issue => issue.status === 'open'))
+        }
+
+        if (type === 'closed') {
+            renderCards(allIssues.filter(issue => issue.status === 'closed'))
+        }
+
+    })
+
 })
 
-tab.classList.add('bg-priamry-color','text-white')
+searchBar.addEventListener('input', () => {
 
-const type=tab.innerText.toLowerCase()
+    const value = searchBar.value
 
-if(type==='all'){
-renderCards(allIssues)
-}
+    if (value === '') {
+        loadIssues()
+        return
+    }
 
-if(type==='open'){
-renderCards(allIssues.filter(issue=>issue.status==='open'))
-}
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${value}`)
 
-if(type==='closed'){
-renderCards(allIssues.filter(issue=>issue.status==='closed'))
-}
+        .then(res => res.json())
 
-})
-
-})
-
-searchBar.addEventListener('input',()=>{
-
-const value=searchBar.value
-
-if(value===''){
-loadIssues()
-return
-}
-
-fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${value}`)
-
-.then(res=>res.json())
-
-.then(data=>{
-renderCards(data.data)
-})
+        .then(data => {
+            renderCards(data.data)
+        })
 
 })
 
